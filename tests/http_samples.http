@@ -1,0 +1,62 @@
+// Use 'REST Client' extension in VSCode or import into tools that understand .http files
+### Health
+GET http://localhost:8000/
+
+### Create college
+POST http://localhost:8000/colleges
+Content-Type: application/json
+
+{
+  "name": "Test College"
+}
+
+### Create student
+POST http://localhost:8000/students
+Content-Type: application/json
+
+{
+  "college_id": 1,
+  "roll_number": "COL001",
+  "name": "Student One",
+  "email": "s1@example.com"
+}
+
+### Create event
+POST http://localhost:8000/events
+Content-Type: application/json
+
+{
+  "college_id": 1,
+  "title": "Data Science Workshop",
+  "event_type": "Workshop"
+}
+
+### Register
+POST http://localhost:8000/events/1/register
+Content-Type: application/json
+
+{ "student_id": 1 }
+
+### Attendance
+POST http://localhost:8000/events/1/attendance
+Content-Type: application/json
+
+{ "student_id": 1, "status": "present" }
+
+### Feedback
+POST http://localhost:8000/events/1/feedback
+Content-Type: application/json
+
+{ "student_id": 1, "rating": 5, "comment": "Great!" }
+
+### Event stats
+GET http://localhost:8000/reports/event/1/stats
+
+### Event popularity (filter by event_type optional)
+GET http://localhost:8000/reports/event-popularity?college_id=1&event_type=Workshop
+
+### Student participation
+GET http://localhost:8000/reports/student-participation?college_id=1
+
+### Top active students
+GET http://localhost:8000/reports/top-active-students?college_id=1&limit=3
